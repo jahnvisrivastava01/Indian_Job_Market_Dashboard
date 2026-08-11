@@ -195,9 +195,9 @@ top_skills = skills.value_counts().head(20)
 
 st.sidebar.markdown(
     """
-    # 🇮🇳 JobIntel
+    # 🇮🇳 Job Market
 
-    **Indian Job Market Intelligence**
+    
     """
 )
 
