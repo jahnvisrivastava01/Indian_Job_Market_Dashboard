@@ -1,4 +1,4 @@
-# 🇮🇳 Indian Job Market Dashboard
+#  Indian Job Market Dashboard
 
 An interactive data analytics dashboard built to explore the Indian job market using nearly **98K job listings**.
 
