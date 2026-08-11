@@ -6,7 +6,7 @@ The project analyzes job demand, locations, salaries, experience requirements, c
 
 ## 🚀 Live Dashboard
 
-👉 [Open JobIntel Dashboard](https://indianjobmarketdashboard-wytdt7kfy2e9rdgdhuavje.streamlit.app/)
+👉 [Open Indian Job Market Dashboard](https://indianjobmarketdashboard-wytdt7kfy2e9rdgdhuavje.streamlit.app/)
 
 ## 📊 Project Overview
 
