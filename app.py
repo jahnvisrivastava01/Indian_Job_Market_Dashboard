@@ -195,7 +195,7 @@ top_skills = skills.value_counts().head(20)
 
 st.sidebar.markdown(
     """
-    # 🇮🇳 Job Market
+    #  Job Market
 
     
     """
@@ -786,7 +786,7 @@ elif page == "Skills":
 st.markdown(
     """
     <div class="footer">
-        🇮🇳 Indian Job Market Dashboard
+         Indian Job Market Dashboard
         <br>
         Built by Jahnvi Srivastava
     </div>
