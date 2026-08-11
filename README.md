@@ -217,9 +217,4 @@ Streamlit Deployment
 
 ⭐ If you found this project useful, consider giving the repository a star!
 
-```
 
-
-
-Your `##` and `###` headings **will appear bold automatically on GitHub**.
-```
