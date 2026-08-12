@@ -5,7 +5,6 @@ import plotly.express as px
 
 st.set_page_config(
     page_title="Indian Job Market Dashboard",
-    page_icon="🇮🇳",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -20,9 +19,16 @@ NAVY = "#312E81"
 
 st.markdown("""
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-html, body, [class*="css"] {
+:root {
+    color-scheme: light !important;
+}
+
+html,
+body,
+[class*="css"] {
     font-family: 'Inter', sans-serif;
 }
 
@@ -30,29 +36,53 @@ html, body, [class*="css"] {
     background:
         radial-gradient(circle at 10% 10%, rgba(124, 58, 237, 0.08), transparent 28%),
         radial-gradient(circle at 90% 20%, rgba(236, 72, 153, 0.07), transparent 28%),
-        linear-gradient(135deg, #F8F7FF 0%, #F4F7FF 50%, #FFF8FC 100%);
+        linear-gradient(135deg, #F8F7FF 0%, #F4F7FF 50%, #FFF8FC 100%) !important;
+    color: #27224A !important;
+}
+
+[data-testid="stAppViewContainer"] {
+    background:
+        linear-gradient(135deg, #F8F7FF 0%, #F4F7FF 50%, #FFF8FC 100%) !important;
+}
+
+[data-testid="stMain"] {
+    background: transparent !important;
+}
+
+[data-testid="stHeader"] {
+    background: transparent !important;
 }
 
 [data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #17113B 0%, #312E81 55%, #4C1D95 100%);
+    background: linear-gradient(
+        180deg,
+        #17113B 0%,
+        #312E81 55%,
+        #4C1D95 100%
+    ) !important;
 }
 
 [data-testid="stSidebar"] * {
-    color: white;
+    color: #FFFFFF !important;
 }
 
 .main-title {
     font-size: 38px;
     font-weight: 800;
     letter-spacing: -1px;
-    background: linear-gradient(90deg, #4F46E5, #7C3AED, #DB2777);
+    background: linear-gradient(
+        90deg,
+        #4F46E5,
+        #7C3AED,
+        #DB2777
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 5px;
 }
 
 .subtitle {
-    color: #667085;
+    color: #667085 !important;
     font-size: 15px;
     margin-bottom: 30px;
 }
@@ -60,14 +90,22 @@ html, body, [class*="css"] {
 .section-title {
     font-size: 21px;
     font-weight: 700;
-    color: #27224A;
+    color: #27224A !important;
     margin-top: 28px;
     margin-bottom: 14px;
 }
 
+.stApp p,
+.stApp label,
+.stApp span,
+.stApp small {
+    color: #344054;
+}
+
 div[data-testid="metric-container"] {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid #E7E4FF;
+    background: #FFFFFF !important;
+    color: #312E81 !important;
+    border: 1px solid #E7E4FF !important;
     padding: 20px 22px;
     border-radius: 18px;
     box-shadow: 0 8px 25px rgba(79, 70, 229, 0.08);
@@ -79,68 +117,183 @@ div[data-testid="metric-container"]:hover {
     box-shadow: 0 14px 32px rgba(79, 70, 229, 0.15);
 }
 
-div[data-testid="metric-container"] label {
+div[data-testid="metric-container"] label,
+div[data-testid="metric-container"] label *,
+div[data-testid="stMetricLabel"],
+div[data-testid="stMetricLabel"] * {
     color: #667085 !important;
     font-size: 13px !important;
     font-weight: 600 !important;
 }
 
-div[data-testid="metric-container"] div[data-testid="stMetricValue"] {
+div[data-testid="stMetricValue"],
+div[data-testid="stMetricValue"] *,
+div[data-testid="stMetricValue"] p,
+div[data-testid="stMetricValue"] span {
     color: #312E81 !important;
     font-size: 27px !important;
     font-weight: 800 !important;
+    opacity: 1 !important;
 }
 
 [data-testid="stPlotlyChart"] {
-    background: rgba(255,255,255,0.72);
-    border: 1px solid #E8E6F5;
+    background: #FFFFFF !important;
+    border: 1px solid #E8E6F5 !important;
     border-radius: 18px;
     padding: 8px;
     box-shadow: 0 6px 20px rgba(16, 24, 40, 0.04);
 }
 
+.js-plotly-plot .plotly {
+    color: #344054 !important;
+}
+
+.js-plotly-plot .xtick text,
+.js-plotly-plot .ytick text {
+    fill: #344054 !important;
+}
+
+.js-plotly-plot .xtitle,
+.js-plotly-plot .ytitle {
+    fill: #344054 !important;
+}
+
+.js-plotly-plot .gtitle {
+    fill: #27224A !important;
+}
+
+.js-plotly-plot .legendtext {
+    fill: #344054 !important;
+}
+
+.js-plotly-plot .colorbar {
+    color: #344054 !important;
+}
+
 [data-testid="stDataFrame"] {
+    background: #FFFFFF !important;
     border-radius: 15px;
     overflow: hidden;
-    border: 1px solid #E5E7EB;
+    border: 1px solid #E5E7EB !important;
+}
+
+[data-testid="stDataFrame"] * {
+    color: #27224A !important;
 }
 
 div[data-baseweb="select"] > div {
+    background: #FFFFFF !important;
     border-radius: 10px !important;
     border-color: #DDD6FE !important;
 }
 
+div[data-baseweb="select"] * {
+    color: #27224A !important;
+}
+
+div[data-baseweb="popover"] {
+    background: #FFFFFF !important;
+}
+
+div[data-baseweb="popover"] * {
+    color: #27224A !important;
+}
+
 [data-testid="stRadio"] label {
+    color: #FFFFFF !important;
     font-weight: 600;
 }
 
+[data-testid="stRadio"] div[role="radiogroup"] label {
+    color: #FFFFFF !important;
+}
+
+.stTextInput input,
+.stNumberInput input,
+.stTextArea textarea {
+    background: #FFFFFF !important;
+    color: #27224A !important;
+    border-color: #DDD6FE !important;
+}
+
+.stCaption,
+[data-testid="stCaptionContainer"] {
+    color: #667085 !important;
+}
+
+[data-testid="stAlert"] {
+    background: #EEF2FF !important;
+    border: 1px solid #C7D2FE !important;
+    color: #344054 !important;
+}
+
+[data-testid="stAlert"] * {
+    color: #344054 !important;
+}
+
 .insight-card {
-    background: linear-gradient(135deg, rgba(99,102,241,0.10), rgba(236,72,153,0.08));
-    border: 1px solid #DDD6FE;
-    border-left: 5px solid #7C3AED;
+    background: linear-gradient(
+        135deg,
+        rgba(99, 102, 241, 0.10),
+        rgba(236, 72, 153, 0.08)
+    ) !important;
+    border: 1px solid #DDD6FE !important;
+    border-left: 5px solid #7C3AED !important;
     border-radius: 14px;
     padding: 18px 20px;
     margin: 20px 0;
-    color: #344054;
+    color: #344054 !important;
     font-size: 14px;
 }
 
+.insight-card * {
+    color: #344054 !important;
+}
+
 .info-card {
-    background: rgba(255,255,255,0.8);
-    border: 1px solid #E7E4FF;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid #E7E4FF !important;
     border-radius: 14px;
     padding: 16px 18px;
     margin: 12px 0;
-    color: #475467;
+    color: #475467 !important;
     font-size: 13px;
+}
+
+.info-card * {
+    color: #475467 !important;
+}
+
+.sidebar-brand {
+    padding: 18px 16px;
+    margin: 4px 0 22px 0;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.sidebar-title {
+    color: #FFFFFF !important;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 5px;
+}
+
+.sidebar-subtitle {
+    color: rgba(255, 255, 255, 0.78) !important;
+    font-size: 12px;
+    line-height: 1.5;
 }
 
 .footer {
     text-align: center;
-    color: #8A8FA3;
+    color: #8A8FA3 !important;
     font-size: 12px;
     padding: 25px 0 10px 0;
 }
+
 </style>
 """, unsafe_allow_html=True)
 
