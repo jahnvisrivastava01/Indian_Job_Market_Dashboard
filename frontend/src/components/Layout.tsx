@@ -16,7 +16,7 @@ const NAV = [
   { to: "/salary", label: "Salaries", icon: IndianRupee },
   { to: "/skills", label: "Skills", icon: Sparkles },
   { to: "/predict", label: "Salary Predictor", icon: Calculator },
-  { to: "/jobs", label: "Job Explorer", icon: Briefcase },
+  { to: "/jobs", label: "Listings Explorer", icon: Briefcase },
 ];
 
 export function Layout({ children }: { children: ReactNode }) {

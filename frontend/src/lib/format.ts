@@ -42,3 +42,14 @@ export const titleCase = (s: string) => {
     .map((w) => (UPPER.has(w) ? w.toUpperCase() : w.charAt(0).toUpperCase() + w.slice(1)))
     .join(" ");
 };
+
+
+/** The dataset is a Sep–Oct 2025 snapshot, so "4 Days Ago" means 4 days before collection. */
+export const postedLabel = (raw: string) => {
+  const s = (raw || "").trim().toLowerCase();
+  if (!s) return "—";
+  if (s === "just now" || s === "today" || s.includes("hour")) return "Posted on collection day";
+  const m = s.match(/^(\d+)\+?\s*days?\s+ago$/);
+  if (m) return `Posted ${m[1]} day${m[1] === "1" ? "" : "s"} before collection`;
+  return raw;
+};

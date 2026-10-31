@@ -82,7 +82,7 @@ export default function Overview() {
                 />
               )}
             </Card>
-            <Card title="Posting recency" sub="Days since the listing went up">
+            <Card title="Posting recency" sub="Days before collection (Sep–Oct 2025) the listing went up">
               {loading ? <Skeleton h={230} /> : (
                 <ChartOrTable
                   chart={<Columns data={data.recency} x="day" y="count" height={230} xFormat={(v) => `${v}d`} tipX={(v) => (Number(v) === 0 ? "Today" : `${v} days ago`)} />}

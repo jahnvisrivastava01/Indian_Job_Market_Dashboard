@@ -4,14 +4,14 @@ import { useSearchParams } from "react-router-dom";
 import { MODE_COLOR } from "../components/charts";
 import { Select } from "../components/inputs";
 import { JobDrawer } from "../components/JobDrawer";
-import { Empty, ErrorBox, PageHeader, Skeleton } from "../components/ui";
+import { Empty, ErrorBox, Note, PageHeader, Skeleton } from "../components/ui";
 import { useJobs } from "../hooks/queries";
 import { apiUrl, filtersToQuery } from "../lib/api";
 import { useFilters } from "../lib/filters";
-import { fmtInt, fmtLPA, titleCase } from "../lib/format";
+import { fmtInt, fmtLPA, postedLabel, titleCase } from "../lib/format";
 
 const SORTS = [
-  { value: "recent", label: "Most recent" },
+  { value: "recent", label: "Newest at collection" },
   { value: "salary", label: "Highest salary" },
   { value: "rating", label: "Best-rated company" },
   { value: "experience", label: "Least experience" },
@@ -42,10 +42,17 @@ export default function Jobs() {
   return (
     <div>
       <PageHeader
-        title="Job Explorer"
-        sub="Search every listing. The sidebar filters apply here too."
+        title="Listings Explorer"
+        sub="Search every listing behind the charts. The filters apply here too."
         right={<a className="btn" href={exportHref} download><Download size={15} />Export CSV</a>}
       />
+
+      <div className="mb-3">
+        <Note>
+          Snapshot of 97,679 listings collected Sep–Oct 2025, for analysis, not active openings.
+          Posting dates are relative to when the data was collected.
+        </Note>
+      </div>
 
       <div className="card flex flex-col gap-3 p-3 sm:flex-row sm:items-center">
         <div className="flex flex-1 items-center gap-2 rounded-lg border border-line bg-surface px-3 focus-within:border-accent">
@@ -80,7 +87,7 @@ export default function Jobs() {
               </div>
               <div className="text-right">
                 <div className={`num text-[14px] ${j.salary ? "font-semibold text-ink" : "text-ink-3"}`}>{j.salary ? fmtLPA(j.salary) : "Not disclosed"}</div>
-                <div className="text-[12px] text-ink-3">{j.experience} · {j.posted}</div>
+                <div className="text-[12px] text-ink-3">{j.experience} · {postedLabel(j.posted)}</div>
               </div>
             </div>
             <div className="mt-2 flex flex-wrap gap-1">

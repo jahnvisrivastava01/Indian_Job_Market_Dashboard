@@ -1,7 +1,7 @@
 import { Building2, Clock, MapPin, Star, X } from "lucide-react";
 import { useEffect } from "react";
 import { useJob } from "../hooks/queries";
-import { fmtInt, fmtLPA, titleCase } from "../lib/format";
+import { fmtInt, fmtLPA, postedLabel, titleCase } from "../lib/format";
 import { MODE_COLOR } from "./charts";
 
 export function JobDrawer({ id, onClose }: { id: number | null; onClose: () => void }) {
@@ -50,7 +50,7 @@ export function JobDrawer({ id, onClose }: { id: number | null; onClose: () => v
                 </span>} />
               <Fact label="Role family" value={j.roleCategory} />
               <Fact label="Seniority" value={j.seniority} />
-              <Fact label="Posted" value={<span className="inline-flex items-center gap-1"><Clock size={13} />{j.posted}</span>} />
+              <Fact label="Posted at collection" value={<span className="inline-flex items-center gap-1"><Clock size={13} />{postedLabel(j.posted).replace(/^Posted (\w)/, (_, c: string) => c.toUpperCase())}</span>} />
             </div>
 
             {j.salary && j.peerMedian && (
