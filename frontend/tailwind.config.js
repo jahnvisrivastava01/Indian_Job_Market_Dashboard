@@ -5,8 +5,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        mono: ['"JetBrains Mono"', "ui-monospace", "monospace"],
+        sans: ['"Google Sans"', "system-ui", "-apple-system", '"Segoe UI"', "Roboto", "sans-serif"],
+        mono: ['"Google Sans Code"', "ui-monospace", '"Cascadia Mono"', "Consolas", "monospace"],
       },
       colors: {
         bg: "var(--bg)",

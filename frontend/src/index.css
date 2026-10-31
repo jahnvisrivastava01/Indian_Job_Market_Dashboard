@@ -64,13 +64,11 @@ html, body, #root { height: 100%; }
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: Inter, system-ui, sans-serif;
+  font-family: "Google Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
-  font-feature-settings: "cv11", "ss01";
 }
 
-.num { font-family: "JetBrains Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
-
+.num { font-family: "Google Sans Code", ui-monospace, "Cascadia Mono", Consolas, monospace; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
 @layer components {
   .card { @apply bg-surface border border-line rounded-xl; }
   .card-pad { @apply p-5; }
