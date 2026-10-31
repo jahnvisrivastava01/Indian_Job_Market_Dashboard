@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ */
+/* Theme tokens. Light / dark are selected (not auto-inverted), and    */
+/* each accent has its own light + dark step.                          */
+/* ------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+  --bg: #f6f5f2;
+  --surface: #fcfcfb;
+  --surface-2: #f0efeb;
+  --line: #e4e2dc;
+  --ink: #17161a;
+  --ink-2: #55535c;
+  --ink-3: #8a8892;
+  --grid: #ebe9e4;
+
+  /* fixed categorical slots (work mode etc.) — validated reference order */
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+
+  --good: #0f8a4a;
+  --warn: #b46a00;
+  --bad: #c43131;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111110;
+  --surface: #1a1a19;
+  --surface-2: #232321;
+  --line: #2f2f2c;
+  --ink: #f0efec;
+  --ink-2: #c3c2b7;
+  --ink-3: #8d8c84;
+  --grid: #2a2a27;
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --good: #3fbf7a;
+  --warn: #e0a030;
+  --bad: #ef6b6b;
+}
+
+/* Accents: saffron is the default */
+:root,
+:root[data-accent="saffron"] { --accent: #c2410c; --accent-ink: #ffffff; }
+:root[data-accent="blue"]    { --accent: #2a6fd6; --accent-ink: #ffffff; }
+:root[data-accent="emerald"] { --accent: #0f8a62; --accent-ink: #ffffff; }
+:root[data-accent="rose"]    { --accent: #c42a63; --accent-ink: #ffffff; }
+
+:root[data-theme="dark"],
+:root[data-theme="dark"][data-accent="saffron"] { --accent: #ec7a36; --accent-ink: #1a0d05; }
+:root[data-theme="dark"][data-accent="blue"]    { --accent: #5a9cf0; --accent-ink: #06121f; }
+:root[data-theme="dark"][data-accent="emerald"] { --accent: #2fb585; --accent-ink: #04140e; }
+:root[data-theme="dark"][data-accent="rose"]    { --accent: #ec6a98; --accent-ink: #1f0610; }
+
+:root { --accent-soft: color-mix(in oklab, var(--accent) 12%, var(--surface)); }
+
+html, body, #root { height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv11", "ss01";
+}
+
+.num { font-family: "JetBrains Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+
+@layer components {
+  .card { @apply bg-surface border border-line rounded-xl; }
+  .card-pad { @apply p-5; }
+  .h-section { @apply text-[15px] font-semibold text-ink tracking-[-0.01em]; }
+  .sub { @apply text-[13px] text-ink-3; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full border border-line bg-surface-2 px-2.5 py-0.5 text-xs text-ink-2; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-surface px-3 py-2 text-sm font-medium text-ink hover:bg-surface-2 transition-colors disabled:opacity-50; }
+  .btn-accent { @apply inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-accent-ink hover:opacity-90 transition-opacity disabled:opacity-50; }
+  .input { @apply w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink placeholder:text-ink-3 outline-none focus:border-accent focus:ring-2 focus:ring-[color-mix(in_oklab,var(--accent)_22%,transparent)]; }
+  .label { @apply mb-1.5 block text-xs font-medium uppercase tracking-wider text-ink-3; }
+}
+
+/* Recharts tweaks */
+.recharts-cartesian-axis-tick-value { fill: var(--ink-3); font-size: 11px; }
+.recharts-text.recharts-label { fill: var(--ink-3); font-size: 11px; }
+.recharts-tooltip-cursor { fill: color-mix(in oklab, var(--ink) 6%, transparent); }
+.recharts-surface:focus, .recharts-wrapper:focus, .recharts-sector:focus, .recharts-rectangle:focus { outline: none; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 10px; border: 2px solid var(--bg); }
+::-webkit-scrollbar-track { background: transparent; }
+
+@keyframes shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-2) 25%, var(--line) 37%, var(--surface-2) 63%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+  border-radius: 8px;
+}

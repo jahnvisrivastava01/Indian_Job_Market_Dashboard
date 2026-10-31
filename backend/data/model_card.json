@@ -1,0 +1,25 @@
+{
+  "trainedOn": 26157,
+  "testedOn": 6540,
+  "target": "Annual salary (INR), midpoint of the advertised range",
+  "algorithm": "HistGradientBoosting quantile regression (P10 / P50 / P90) on log salary",
+  "metrics": {
+    "r2Log": 0.66,
+    "medianAbsPctError": 0.213,
+    "baselineMedianAbsPctError": 0.478,
+    "within25Pct": 0.561,
+    "intervalCoverage": 0.745,
+    "maeINR": 242195.0
+  },
+  "featureImportance": {
+    "Experience": 0.7165,
+    "Skills": 0.1014,
+    "Role category": 0.0979,
+    "City": 0.0454,
+    "Seniority (from title)": 0.0282,
+    "Work mode": 0.0106
+  },
+  "skillsUsed": 400,
+  "citiesUsed": 30,
+  "trainSeconds": 116.3
+}
